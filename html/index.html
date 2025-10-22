@@ -4,15 +4,11 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Universo Escolar - Papelaria Online</title>
-        <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/cssbiel.css" rel="stylesheet" />
     </head>
     <body>
-        <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="#!">Universo Escolar</a>
@@ -23,20 +19,16 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" href="#!">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="nos.html">Sobre</a></li>
-                        <!-- Atualizado aqui -->
                         <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Carrinho
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
+                    <a class="btn btn-outline-dark" href="carrinho.html" id="carrinho-btn">
+                        <i class="bi-cart-fill me-1"></i>
+                        Carrinho
+                        <span class="badge bg-dark text-white ms-1 rounded-pill" id="carrinho-contador">0</span>
+                    </a>
                 </div>
             </div>
         </nav>
-        <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
@@ -45,12 +37,10 @@
                 </div>
             </div>
         </header>
-        <!-- Produtos -->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-                    <!-- Produto 1 -->
                     <div class="col mb-5">
                         <div class="card h-100">
                             <img class="card-img-top" src="https://images.tcdn.com.br/img/img_prod/1352612/caderno_universitario_comfy_10_materias_160_folhas_307_1_886289fc52fae6727e710f2e3a779c02.png" alt="Caderno Universitário" />
@@ -59,12 +49,18 @@
                                 R$ 25,90
                             </div>
                             <div class="card-footer p-4 pt-0 bg-transparent text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="caderno.html">Detalhes</a>
+                                <button class="btn btn-outline-dark mt-auto" type="button" 
+                                    data-id="caderno-uni-10m" 
+                                    data-nome="Caderno Universitário 10 Matérias" 
+                                    data-preco="25.90"
+                                    data-imagem="https://images.tcdn.com.br/img/img_prod/1352612/caderno_universitario_comfy_10_materias_160_folhas_307_1_886289fc52fae6727e710f2e3a779c02.png"
+                                    onclick="adicionarAoCarrinho(this)">
+                                    Adicionar ao Carrinho
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Produto 2 -->
                     <div class="col mb-5">
                         <div class="card h-100">
                             <div class="badge bg-dark text-white position-absolute" style="top:0.5rem; right:0.5rem">Promoção</div>
@@ -75,12 +71,18 @@
                                 R$ 14,90
                             </div>
                             <div class="card-footer p-4 pt-0 bg-transparent text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="caneta.html">Detalhes</a>
+                                <button class="btn btn-outline-dark mt-auto" type="button" 
+                                    data-id="kit-caneta-10" 
+                                    data-nome="Kit Canetas Coloridas (10 unid.)" 
+                                    data-preco="14.90"
+                                    data-imagem="https://images-fabercastell.ifcshop.com.br/produto/Caneta-Esferografica-Faber-Castell-Trilux-Colors-10mm-Ctl-c-10-Unid-12-Ctlcada-SM032ESC10-c49d8ff810e1fda5a78dbc9aef158754.png"
+                                    onclick="adicionarAoCarrinho(this)">
+                                    Adicionar ao Carrinho
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Produto 3 -->
                     <div class="col mb-5">
                         <div class="card h-100">
                             <img class="card-img-top" src="https://images.tcdn.com.br/img/img_prod/1055332/kit_12_lapis_preto_grafite_no_2_hb_max_sextavado_1205_faber_castell_5429_1_8df06fc9e4d982f5c846280f3983e19b.jpg" alt="Lápis de escrever" />
@@ -89,12 +91,18 @@
                                 R$ 12,50
                             </div>
                             <div class="card-footer p-4 pt-0 bg-transparent text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="lapis.html">Detalhes</a>
+                                <button class="btn btn-outline-dark mt-auto" type="button" 
+                                    data-id="caixa-lapis-12" 
+                                    data-nome="Caixa de Lápis de Grafite (12 unid.)" 
+                                    data-preco="12.50"
+                                    data-imagem="https://images.tcdn.com.br/img/img_prod/1055332/kit_12_lapis_preto_grafite_no_2_hb_max_sextavado_1205_faber_castell_5429_1_8df06fc9e4d982f5c846280f3983e19b.jpg"
+                                    onclick="adicionarAoCarrinho(this)">
+                                    Adicionar ao Carrinho
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Produto 4 -->
                     <div class="col mb-5">
                         <div class="card h-100">
                             <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERB4SX6O87yAkRiDfJqOdC2fcNpkwg0-HKg&s" alt="Mochila escolar" />
@@ -103,7 +111,14 @@
                                 R$ 99,90
                             </div>
                             <div class="card-footer p-4 pt-0 bg-transparent text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="mochila.html">Detalhes</a>
+                                <button class="btn btn-outline-dark mt-auto" type="button" 
+                                    data-id="mochila-reforcada" 
+                                    data-nome="Mochila Escolar Reforçada" 
+                                    data-preco="99.90"
+                                    data-imagem="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERB4SX6O87yAkRiDfJqOdC2fcNpkwg0-HKg&s"
+                                    onclick="adicionarAoCarrinho(this)">
+                                    Adicionar ao Carrinho
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -111,15 +126,13 @@
                 </div>
             </div>
         </section>
-        <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container">
                 <p class="m-0 text-center text-white">© Universo Escolar 2025 - Todos os direitos reservados</p>
             </div>
         </footer>
-        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="js/carrinho.js"></script>
     </body>
 </html>

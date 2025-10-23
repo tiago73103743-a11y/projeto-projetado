@@ -49,8 +49,8 @@
   --bs-warning-rgb: 255, 193, 7;
   --bs-danger-rgb: 220, 53, 69;
   --bs-light-rgb: 248, 249, 250;
-  --bs-dark-rgb: 33, 37, 41;
-  --bs-white-rgb: 255, 255, 255;
+  --bs-dark-rgb: 250, 180, 1;/* cor do fundo universo escolar */
+  --bs-white-rgb: 1, 1, 25;/* cores da Letra universo escolar */
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
@@ -8100,7 +8100,7 @@ textarea.form-control-lg {
 
 .text-white-50 {
   --bs-text-opacity: 1;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(1, 1, 1, 1) !important;
 }
 
 .text-reset {

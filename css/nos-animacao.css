@@ -1,0 +1,205 @@
+/*
+ * Arquivo: css/nos-animacao.css
+ * Responsável pela estilização dos personagens (Lapinhos) e da seção de vídeo.
+*/
+
+body {
+    background-color: #f0f0f0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.video-container {
+    margin-top: 40px;
+}
+
+.scene {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 60px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.character {
+    position: relative;
+    width: 120px;
+}
+
+/* Estilos de Cabeça */
+.head {
+    width: 80px;
+    height: 80px;
+    background-color: #ffe0bd;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.hair {
+    width: 120px;
+    height: 100px;
+    background-color: #6b3e26;
+    border-radius: 60% 60% 40% 40%;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    z-index: -1;
+}
+
+.eye {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px;
+}
+
+.eye.left {
+    left: 20px;
+}
+
+.eye.right {
+    right: 20px;
+}
+
+.mouth {
+    width: 30px;
+    height: 15px;
+    background-color: #c0392b;
+    border-radius: 0 0 15px 15px;
+    position: absolute;
+    bottom: 15px;
+    left: 25px;
+}
+
+/* Estilos de Corpo */
+.body {
+    width: 70px;
+    height: 100px;
+    background-color: #4a90e2;
+    border-radius: 10px;
+    margin: 10px auto;
+    position: relative;
+}
+
+.body.mom {
+    background-color: #e67e22;
+}
+
+.body.kid {
+    height: 60px;
+    width: 50px;
+}
+
+/* Membros e Acessórios */
+.arm {
+    width: 15px;
+    height: 60px;
+    background-color: #ffe0bd;
+    position: absolute;
+    top: 20px;
+}
+
+.arm.left {
+    left: -20px;
+    transform: rotate(-10deg);
+}
+
+.arm.right {
+    right: -20px;
+    transform: rotate(10deg);
+}
+
+.hand {
+    width: 20px;
+    height: 20px;
+    background-color: #ffe0bd;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -10px;
+    left: -2px;
+}
+
+.finger {
+    width: 4px;
+    height: 10px;
+    background-color: #ffe0bd;
+    border-radius: 2px;
+    position: absolute;
+    top: -10px;
+}
+
+.finger:nth-child(1) {
+    left: 2px;
+}
+
+.finger:nth-child(2) {
+    left: 8px;
+}
+
+.finger:nth-child(3) {
+    left: 14px;
+}
+
+.backpack {
+    width: 30px;
+    height: 40px;
+    background-color: #8b572a;
+    border-radius: 10px;
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    z-index: -1;
+}
+
+.legs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.leg {
+    width: 15px;
+    height: 40px;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* Balões de Fala */
+.speech-bubble {
+    position: absolute;
+    top: -20px;
+    left: 130px;
+    width: 240px;
+    background-color: white;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    border: 10px solid transparent;
+    border-right-color: white;
+}
+
+.speech-bubble.mom {
+    left: -260px;
+}
+
+.speech-bubble.mom::after {
+    left: auto;
+    right: -10px;
+    border-right-color: transparent;
+    border-left-color: white;
+}

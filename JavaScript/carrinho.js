@@ -1,167 +1,136 @@
-const LS_KEY_CARRINHO = 'universoEscolarCarrinho';
+// =======================================================
+// MÓDULO 1: MANIPULAÇÃO DE DADOS (LOCAL STORAGE)
+// =======================================================
 
-// Função para formatar o valor para moeda brasileira (R$)
-const formatarPreco = (preco) => {
-    return `R$ ${parseFloat(preco).toFixed(2).replace('.', ',')}`;
-};
+let carrinho = [];
 
-// --- FUNÇÕES DE LÓGICA DO CARRINHO ---
+function carregarCarrinho() {
+    const carrinhoJSON = localStorage.getItem('carrinhoUniversoEscolar');
+    if (carrinhoJSON) {
+        carrinho = JSON.parse(carrinhoJSON);
+    }
+}
 
-// 1. Carrega os itens do carrinho do LocalStorage
-const carregarCarrinho = () => {
-    const carrinhoJson = localStorage.getItem(LS_KEY_CARRINHO);
-    return carrinhoJson ? JSON.parse(carrinhoJson) : [];
-};
+function salvarCarrinho() {
+    localStorage.setItem('carrinhoUniversoEscolar', JSON.stringify(carrinho));
+}
 
-// 2. Salva os itens do carrinho no LocalStorage
-const salvarCarrinho = (carrinho) => {
-    localStorage.setItem(LS_KEY_CARRINHO, JSON.stringify(carrinho));
-};
 
-// 3. Adiciona um item ao carrinho (chamada pelos botões nos produtos)
-window.adicionarAoCarrinho = (elemento) => {
-    const id = elemento.getAttribute('data-id');
-    const nome = elemento.getAttribute('data-nome');
-    // Converte o preço de string para float
-    const preco = parseFloat(elemento.getAttribute('data-preco')); 
-    const imagem = elemento.getAttribute('data-imagem') || 'https://via.placeholder.com/70x70.png?text=Item';
+// =======================================================
+// MÓDULO 2: LÓGICA DE NEGÓCIO
+// =======================================================
 
-    let carrinho = carregarCarrinho();
+function adicionarAoCarrinho(elementoBotao) {
+    const id = elementoBotao.dataset.id;
+    const nome = elementoBotao.dataset.nome;
+    const preco = parseFloat(elementoBotao.dataset.preco);
+    const imagem = elementoBotao.dataset.imagem;
+
     const itemExistente = carrinho.find(item => item.id === id);
 
     if (itemExistente) {
         itemExistente.quantidade += 1;
     } else {
-        carrinho.push({ id, nome, preco, quantidade: 1, imagem });
+        carrinho.push({
+            id: id,
+            nome: nome,
+            preco: preco,
+            imagem: imagem,
+            quantidade: 1
+        });
     }
 
-    salvarCarrinho(carrinho);
-    atualizarContadorCarrinho(carrinho);
+    salvarCarrinho();
+    atualizarContador();
+    alert(`"${nome}" adicionado ao carrinho!`); 
+}
+
+function removerItem(itemId) {
+    carrinho = carrinho.filter(item => item.id !== itemId);
+    salvarCarrinho();
     
-    // Alerta de sucesso (opcional)
-    alert(`${nome} adicionado ao carrinho!`);
-};
-
-// 4. Aumenta ou diminui a quantidade de um item
-window.mudarQuantidade = (id, delta) => {
-    let carrinho = carregarCarrinho();
-    const item = carrinho.find(item => item.id === id);
-
-    if (item) {
-        item.quantidade += delta;
-        
-        if (item.quantidade <= 0) {
-            // Se a quantidade for zero ou menos, remove o item
-            removerDoCarrinho(id);
-            return;
-        }
+    if (document.getElementById('tabela-carrinho')) {
+        renderizarCarrinho();
+    } else {
+        atualizarContador();
     }
-    
-    salvarCarrinho(carrinho);
-    // Renderiza a tela somente se estiver na página do carrinho
-    if (document.getElementById('carrinho-tabela-body')) {
-        renderizarCarrinho(); 
-    }
-};
+}
 
-// 5. Remove um item do carrinho
-window.removerDoCarrinho = (id) => {
-    let carrinho = carregarCarrinho();
-    carrinho = carrinho.filter(item => item.id !== id);
-    
-    salvarCarrinho(carrinho);
-    // Renderiza a tela somente se estiver na página do carrinho
-    if (document.getElementById('carrinho-tabela-body')) {
-        renderizarCarrinho(); 
-    }
-};
+function atualizarQuantidade(itemId, novaQtd) {
+    const item = carrinho.find(item => item.id === itemId);
+    const quantidade = parseInt(novaQtd);
 
-// 6. Atualiza o contador de itens no cabeçalho
-const atualizarContadorCarrinho = (carrinho) => {
-    const contadorEl = document.getElementById('carrinho-contador');
-    if (contadorEl) {
-        const totalItens = carrinho.reduce((total, item) => total + item.quantidade, 0);
-        contadorEl.textContent = totalItens;
-    }
-};
-
-// --- FUNÇÃO PRINCIPAL DE RENDERIZAÇÃO NA PÁGINA CARRINHO ---
-
-const renderizarCarrinho = () => {
-    const carrinho = carregarCarrinho();
-    const tabelaBody = document.getElementById('carrinho-tabela-body');
-    const resumoTotalEl = document.getElementById('carrinho-total');
-    const resumoSubtotalEl = document.getElementById('carrinho-subtotal');
-    const vazioMsgEl = document.getElementById('carrinho-vazio-msg');
-    const conteudoEl = document.getElementById('carrinho-conteudo');
-
-    if (!tabelaBody || !resumoTotalEl) return; 
-
-    // Limpa a tabela
-    tabelaBody.innerHTML = '';
-    
-    if (carrinho.length === 0) {
-        // Mostra a mensagem de carrinho vazio
-        vazioMsgEl.classList.remove('d-none');
-        if (conteudoEl) conteudoEl.classList.add('d-none');
-        resumoSubtotalEl.textContent = formatarPreco(0);
-        resumoTotalEl.textContent = formatarPreco(0);
-        atualizarContadorCarrinho(carrinho);
+    if (item && quantidade > 0) {
+        item.quantidade = quantidade;
+    } else if (item && quantidade <= 0) {
+        removerItem(itemId);
         return;
     }
 
-    vazioMsgEl.classList.add('d-none');
-    if (conteudoEl) conteudoEl.classList.remove('d-none');
-    
+    salvarCarrinho();
+    if (document.getElementById('tabela-carrinho')) {
+        renderizarCarrinho();
+    }
+}
+
+
+// =======================================================
+// MÓDULO 3: RENDERIZAÇÃO DA UI (Interface do Usuário)
+// =======================================================
+
+function atualizarContador() {
+    const contadorElemento = document.getElementById('carrinho-contador');
+    if (contadorElemento) {
+        const totalItens = carrinho.reduce((total, item) => total + item.quantidade, 0);
+        contadorElemento.textContent = totalItens;
+    }
+}
+
+function renderizarCarrinho() {
+    const corpoTabela = document.getElementById('carrinho-corpo-tabela');
+    const totalElemento = document.getElementById('carrinho-total');
+
+    if (!corpoTabela || !totalElemento) return; 
+
+    corpoTabela.innerHTML = ''; 
+
     let subtotalGeral = 0;
 
     carrinho.forEach(item => {
-        const subtotalItem = item.preco * item.quantidade;
-        subtotalGeral += subtotalItem;
-        
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>
-                <div class="d-flex align-items-center">
-                    <img src="${item.imagem}" class="carrinho-item-img me-3" alt="${item.nome}">
-                    <span>${item.nome}</span>
-                </div>
-            </td>
-            <td class="text-center">${formatarPreco(item.preco)}</td>
-            <td class="text-center">
-                <div class="d-flex justify-content-center align-items-center">
-                    <button class="btn btn-sm btn-outline-secondary quantidade-btn" 
-                            onclick="mudarQuantidade('${item.id}', -1)">-</button>
-                    <span class="mx-2">${item.quantidade}</span>
-                    <button class="btn btn-sm btn-outline-secondary quantidade-btn" 
-                            onclick="mudarQuantidade('${item.id}', 1)">+</button>
-                </div>
-            </td>
-            <td class="text-end">${formatarPreco(subtotalItem)}</td>
-            <td>
-                <button class="btn btn-sm btn-danger" onclick="removerDoCarrinho('${item.id}')">
-                    <i class="bi-trash"></i> Retirar
-                </button>
-            </td>
+        const subtotal = item.preco * item.quantidade;
+        subtotalGeral += subtotal;
+
+        const linha = `
+            <tr>
+                <td><img src="${item.imagem}" alt="${item.nome}" style="width: 50px;"></td>
+                <td>${item.nome}</td>
+                <td>R$ ${item.preco.toFixed(2).replace('.', ',')}</td>
+                <td>
+                    <input type="number" value="${item.quantidade}" min="1" 
+                           onchange="atualizarQuantidade('${item.id}', this.value)" 
+                           style="width: 60px;">
+                </td>
+                <td>R$ ${subtotal.toFixed(2).replace('.', ',')}</td>
+                <td><button onclick="removerItem('${item.id}')" class="btn btn-sm btn-danger">Remover</button></td>
+            </tr>
         `;
-        tabelaBody.appendChild(row);
+        corpoTabela.innerHTML += linha;
     });
 
-    // Atualiza os totais
-    resumoSubtotalEl.textContent = formatarPreco(subtotalGeral);
-    resumoTotalEl.textContent = formatarPreco(subtotalGeral);
-    
-    atualizarContadorCarrinho(carrinho);
-};
+    totalElemento.textContent = `R$ ${subtotalGeral.toFixed(2).replace('.', ',')}`;
+    atualizarContador(); 
+}
 
 
-// Inicialização: Se estiver na página de carrinho, renderiza; caso contrário, só atualiza o contador.
+// =======================================================
+// INICIALIZAÇÃO
+// =======================================================
+
 document.addEventListener('DOMContentLoaded', () => {
-    const carrinho = carregarCarrinho();
-    atualizarContadorCarrinho(carrinho);
+    carregarCarrinho();
+    atualizarContador();
     
-    // Verifica se estamos na página do carrinho para renderizar a tabela
-    if (document.getElementById('carrinho-tabela-body')) {
+    if (document.getElementById('tabela-carrinho')) {
         renderizarCarrinho();
     }
 });

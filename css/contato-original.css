@@ -1,42 +1,25 @@
 /*
- * Arquivo: css/contato-original.css
- * Estilos segmentados da página contato.html.
- * **Contém a imagem de fundo original para a seção do formulário.**
+ * Arquivo: css/contato-original.css (ATUALIZADO)
+ * Segmentado: Removidas as regras globais de reset e body.
+ * Contém apenas estilos específicos para a página de contato (Header e Formulário).
 */
-
-/* Reset de estilos padrões */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f4f6;
-    /* A cor fdfdfd é muito clara para o body, mantendo a original (f3f4f6)
-       e deixando o #fadfdf (original) apenas para a cor do texto do body,
-       que será sobreposto por outras cores mais escuras do formulário. */
-    color: #fadfdf; 
-    line-height: 1.6;
-}
 
 /* Cabeçalho */
 header {
-    background-color: #141413;
+    background-color: #141413; 
     padding: 80px 20px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 header .header-content h1 {
-    color: #f8f8fa;
+    color: #f8f8fa; 
     font-size: 2.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 header .header-content p {
-    color: #ffffff;
+    color: #ffffff; 
     font-size: 1.2rem;
     margin-top: 10px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
@@ -54,7 +37,7 @@ header .header-content p {
 }
 
 .contact-form {
-    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco com opacidade para contraste */
+    background-color: rgba(255, 255, 255, 0.8); 
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);

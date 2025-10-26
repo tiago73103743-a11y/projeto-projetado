@@ -1,0 +1,98 @@
+/*
+ * css/contato.css
+ * Estilos extraídos de contato.html
+*/
+
+/* Estilos de Header */
+header {
+    background-color: #ffc107; /* CORRIGIDO: Cor Amarela */
+    padding: 80px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+header .header-content h1 {
+    color: #141413; /* Ajustado para preto para melhor contraste com o fundo amarelo */
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .header-content p {
+    color: #141413; /* Ajustado para preto para melhor contraste */
+    font-size: 1.2rem;
+    margin-top: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Seção do Formulário e Fundo */
+.contact-form-section {
+    background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fobservatorio3setor.org.br%2Fwp-content%2Fuploads%2F2023%2F01%2FAdobeStock_519371307-scaled-e1674155814147-1536x922.jpeg&f=1&nofb=1&ipt=96ddc12a01200af656a9ea185374ede1119919292930cadb89e0a9742f2ce9b2') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submit-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 15px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.submit-btn:hover {
+    background-color: #138496;
+    transform: translateY(-1px);
+}

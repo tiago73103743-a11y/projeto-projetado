@@ -76,3 +76,23 @@ footer p.text-muted {
 .scroll-to-top:hover {
     background: #343a40;
 }
+/*
+ * CORREÇÃO V3: Força a exibição e o alinhamento correto dos ícones Font Awesome
+ * dentro dos círculos do Rodapé.
+ * (Adicionado ao final de css/global.css)
+*/
+footer .social-link i {
+    /* Garante que o ícone tenha o tamanho da fonte e seja centralizado */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Zera margens e padding que possam estar empurrando o ícone para fora */
+    margin: 0;
+    padding: 0;
+    
+    /* Alinha o texto (o ícone) no centro da linha */
+    text-align: center;
+    vertical-align: middle;
+    line-height: inherit; /* Herda o line-height do pai */
+}

@@ -10823,4 +10823,20 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+  .card-footer {
+    /* Garante que o footer use o modelo de caixa correto */
+    box-sizing: border-box;
+    /* Força o alinhamento para o centro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1rem; 
+}
+
+/* Aplica a correção mais agressiva ao botão dentro do card-footer */
+.card-footer .btn {
+    width: 100%; 
+    /* Esta linha é a mais importante. Zera margens externas, forçando o confinamento. */
+    margin: 0 !important; 
+}
 }

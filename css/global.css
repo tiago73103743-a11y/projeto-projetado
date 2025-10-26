@@ -1,205 +1,98 @@
 /*
- * Arquivo: css/nos-animacao.css
- * Responsável pela estilização dos personagens (Lapinhos) e da seção de vídeo.
+ * Arquivo: css/global.css
+ * Responsável por estilos globais e elementos comuns (Body, Rodapé, Scroll to Top).
+ * Deve ser importado ANTES dos CSS de template específicos (csstiti.css, cssbiel.css, etc.).
 */
 
+/* 1. ESTILOS BASE */
 body {
-    background-color: #f0f0f0;
-    text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    line-height: 1.5;
+    background-color: #f8f9fa; 
 }
 
-.video-container {
-    margin-top: 40px;
+a {
+    color: #495057; /* Cor de link padrão */
+    text-decoration: none;
 }
 
-.scene {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 60px;
-    margin-top: 30px;
-    margin-bottom: 60px;
-    position: relative;
+a:hover {
+    color: #000000;
+    text-decoration: underline;
 }
 
-.character {
-    position: relative;
-    width: 120px;
+/* 2. RODAPÉ (FOOTER) - UNIFICADO */
+footer.text-center {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: #f8f9fa; 
 }
 
-/* Estilos de Cabeça */
-.head {
-    width: 80px;
-    height: 80px;
-    background-color: #ffe0bd;
-    border-radius: 50%;
-    position: relative;
-    margin: 0 auto;
+footer.bg-dark {
+    background-color: #343a40 !important;
 }
 
-.hair {
-    width: 120px;
-    height: 100px;
-    background-color: #6b3e26;
-    border-radius: 60% 60% 40% 40%;
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    z-index: -1;
+footer .list-inline-item {
+    margin: 0 0.5rem;
 }
 
-.eye {
-    width: 10px;
-    height: 10px;
-    background-color: black;
-    border-radius: 50%;
-    position: absolute;
-    top: 25px;
+footer .social-link {
+    display: block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-size: 1.2rem;
+    border: 1px solid #c0c0c0;
+    transition: all 0.3s ease;
 }
 
-.eye.left {
-    left: 20px;
+footer .social-link:hover {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff !important;
 }
 
-.eye.right {
-    right: 20px;
+footer p.text-muted {
+    font-size: 0.9rem;
+    color: #6c757d !important;
 }
 
-.mouth {
-    width: 30px;
-    height: 15px;
-    background-color: #c0392b;
-    border-radius: 0 0 15px 15px;
-    position: absolute;
+/* 3. BOTÃO "SCROLL TO TOP" */
+.scroll-to-top {
+    position: fixed;
+    right: 15px;
     bottom: 15px;
-    left: 25px;
-}
-
-/* Estilos de Corpo */
-.body {
-    width: 70px;
-    height: 100px;
-    background-color: #4a90e2;
-    border-radius: 10px;
-    margin: 10px auto;
-    position: relative;
-}
-
-.body.mom {
-    background-color: #e67e22;
-}
-
-.body.kid {
-    height: 60px;
+    display: none; 
     width: 50px;
-}
-
-/* Membros e Acessórios */
-.arm {
-    width: 15px;
-    height: 60px;
-    background-color: #ffe0bd;
-    position: absolute;
-    top: 20px;
-}
-
-.arm.left {
-    left: -20px;
-    transform: rotate(-10deg);
-}
-
-.arm.right {
-    right: -20px;
-    transform: rotate(10deg);
-}
-
-.hand {
-    width: 20px;
-    height: 20px;
-    background-color: #ffe0bd;
+    height: 50px;
+    text-align: center;
+    color: #fff;
+    background: rgba(52, 58, 64, 0.5);
+    line-height: 45px;
     border-radius: 50%;
-    position: absolute;
-    bottom: -10px;
-    left: -2px;
+    z-index: 1000;
 }
 
-.finger {
-    width: 4px;
-    height: 10px;
-    background-color: #ffe0bd;
-    border-radius: 2px;
-    position: absolute;
-    top: -10px;
+.scroll-to-top:hover {
+    background: #343a40;
 }
-
-.finger:nth-child(1) {
-    left: 2px;
-}
-
-.finger:nth-child(2) {
-    left: 8px;
-}
-
-.finger:nth-child(3) {
-    left: 14px;
-}
-
-.backpack {
-    width: 30px;
-    height: 40px;
-    background-color: #8b572a;
-    border-radius: 10px;
-    position: absolute;
-    top: 10px;
-    left: -20px;
-    z-index: -1;
-}
-
-.legs {
-    display: flex;
+/*
+ * CORREÇÃO V3: Força a exibição e o alinhamento correto dos ícones Font Awesome
+ * dentro dos círculos do Rodapé.
+ * (Adicionado ao final de css/global.css)
+*/
+footer .social-link i {
+    /* Garante que o ícone tenha o tamanho da fonte e seja centralizado */
+    display: inline-flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 5px;
-}
-
-.leg {
-    width: 15px;
-    height: 40px;
-    background-color: #333;
-    border-radius: 5px;
-}
-
-/* Balões de Fala */
-.speech-bubble {
-    position: absolute;
-    top: -20px;
-    left: 130px;
-    width: 240px;
-    background-color: white;
-    border: 2px solid #333;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 14px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.speech-bubble::after {
-    content: "";
-    position: absolute;
-    top: 20px;
-    left: -10px;
-    border: 10px solid transparent;
-    border-right-color: white;
-}
-
-.speech-bubble.mom {
-    left: -260px;
-}
-
-.speech-bubble.mom::after {
-    left: auto;
-    right: -10px;
-    border-right-color: transparent;
-    border-left-color: white;
+    align-items: center;
+    
+    /* Zera margens e padding que possam estar empurrando o ícone para fora */
+    margin: 0;
+    padding: 0;
+    
+    /* Alinha o texto (o ícone) no centro da linha */
+    text-align: center;
+    vertical-align: middle;
+    line-height: inherit; /* Herda o line-height do pai */
 }

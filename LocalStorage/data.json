@@ -1,0 +1,33 @@
+{
+    "produtos":
+    [
+        {
+            "id": "caderno-uni-10m",
+            "nome": "Caderno Universitário 10 Matérias",
+            "preco": "25.90",
+            "imagem": "https://images.tcdn.com.br/img/img_prod/1352612/caderno_universitario_comfy_10_materias_160_folhas_307_1_886289fc52fae6727e710f2e3a779c02.png",
+            "detailPage": "caderno.html"
+        },
+        {
+            "id": "kit-caneta-10",
+            "nome": "Caixa de Lápis de Caneta (12 unid.)",
+            "preco": "12.50",
+            "imagem": "https://images-fabercastell.ifcshop.com.br/produto/Caneta-Esferografica-Faber-Castell-Trilux-Colors-10mm-Ctl-c-10-Unid-12-Ctlcada-SM032ESC10-c49d8ff810e1fda5a78dbc9aef158754.png",
+            "detailPage": "caneta.html"
+        },
+        {
+            "id": "caixa-lapis-12",
+            "nome": "Caixa de Lápis de Grafite (12 unid.)",
+            "preco": "18.50",
+            "imagem": "https://images.tcdn.com.br/img/img_prod/1055332/kit_12_lapis_preto_grafite_no_2_hb_max_sextavado_1205_faber_castell_5429_1_8df06fc9e4d982f5c846280f3983e19b.jpg",
+            "detailPage": "lapis.html"
+        },
+        {
+            "id": "mochila-reforcada",
+            "nome": "Mochila Escolar Reforçada",
+            "preco": "99.90",
+            "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTERB4SX6O87yAkRiDfJqOdC2fcNpkwg0-HKg&s",
+            "detailPage": "mochila.html"
+        }
+    ]
+}

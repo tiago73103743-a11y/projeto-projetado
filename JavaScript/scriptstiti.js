@@ -77,4 +77,4 @@ function fadeIn(el, display) {
             requestAnimationFrame(fade);
         }
     })();
-};
+}; 

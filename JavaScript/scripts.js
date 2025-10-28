@@ -31,42 +31,56 @@ async function carregarJSON(regexfilter) {
 
       const precoParaDisplay = produto.preco;
       
-      // CRÍTICO: Geração do link de detalhes para páginas individuais
-      // Pega a primeira palavra (ex: "Caderno"), minúsculas, e adiciona .html
-      const detailPage = produto.nome.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/g, '') + '.html';
+      // 1. CORREÇÃO DE LINK: Usa a URL correta diretamente do data.json
+      const detailPage = produto.detailPage;
       
       // Geração de ID e preparo para o botão de carrinho
-      const produtoId = produto.nome.replace(/\s+/g, '-').toLowerCase();
-      const precoFloat = parseFloat(produto.preco.replace(',', '.')); 
+      const precoFloat = parseFloat(produto.preco);
       
-      card.innerHTML = `
+      const cardHTML = `
         <div class="card h-100">
-          <img class="card-img-top" 
-               src="${produto.imagem}" 
-               alt="${produto.nome}" />
-          <div class="card-body p-4 text-center">
-              <h5 class="fw-bolder">${produto.nome}</h5>
-              R$ ${precoParaDisplay}
-          </div>
-          <div class="card-footer p-4 pt-0 bg-transparent text-center">
-              <a class="btn btn-outline-dark mt-auto" href="${detailPage}">Detalhes</a>
-              <button class="btn btn-success mt-2" 
-                      data-id="${produtoId}"
-                      data-nome="${produto.nome}"
-                      data-preco="${precoFloat}" 
-                      data-imagem="${produto.imagem}"
-                      onclick="adicionarAoCarrinho(this)">
-                      Adicionar
-              </button>
-          </div>
+            <a href="${detailPage}"> 
+              <img class="card-img-top" src="${produto.imagem}" alt="${produto.nome}" />
+            </a>
+
+            <div class="card-body p-4">
+                <div class="text-center">
+                    <h5 class="fw-bolder">${produto.nome}</h5>
+                    R$ ${precoParaDisplay.replace('.', ',')}
+                </div>
+            </div>
+            
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-outline-dark mt-auto me-2" href="${detailPage}">Ver detalhes</a>
+                        
+                        <button class="btn btn-primary flex-shrink-0" type="button" 
+                                data-id="${produto.id}"
+                                data-nome="${produto.nome}"
+                                data-preco="${precoFloat}" 
+                                data-imagem="${produto.imagem}"
+                                onclick="adicionarAoCarrinho(this)">
+                            <i class="bi-cart-fill me-1"></i>
+                            Adicionar
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
       `;
 
+      card.innerHTML = cardHTML;
       produtosholder.appendChild(card);
     });
-    
+
+    // Se não houver produtos, exibe mensagem
+    if (dataFiltered.length === 0) {
+        produtosholder.innerHTML = `<p class="text-center">Nenhum produto encontrado com o termo "${regexfilter}".</p>`;
+    }
+
   } catch (error) {
-    console.error('Erro CRÍTICO ao carregar JSON:', error);
+    console.error('Error ao carregar JSON:', error);
     const produtosholder = document.getElementById('produtos-holder');
     if(produtosholder) {
         produtosholder.innerHTML = `<p class="text-center text-danger">Falha ao carregar os produtos. Verifique o Live Server e o caminho: <b>../LocalStorage/data.json</b>. Erro: ${error.message}</p>`;
